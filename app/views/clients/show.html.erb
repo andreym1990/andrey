@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @client.name %>
+</p>
+
+<p>
+  <b>Sname:</b>
+  <%= @client.sname %>
+</p>
+
+<p>
+  <b>Lname:</b>
+  <%= @client.lname %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @client.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @client.phone %>
+</p>
+
+<% if permitted_to? :edit, @user %>
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<% end %>
+<%= link_to 'Back', clients_path %>
+<table class="profile">
+<tr>
+<td class="main">
+<% unless @client.accounts.empty? %>
+          <b>Accounts:</b>
+          <table class="accounts" summary="User accounts">
+          <%= render @accounts %>
+        </table>
+        <%= will_paginate @accounts %>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+        <strong>Accounts</strong> <%= @client.accounts.count %>
+    </td>
+</tr>
+</table>

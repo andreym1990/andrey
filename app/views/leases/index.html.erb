@@ -1,0 +1,33 @@
+<h1>Listing leases</h1>
+
+<table>
+  <tr>
+    <th>Partition</th>
+    <th>Client</th>
+    <th>Begin</th>
+    <th>End</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @leases.each do |lease| %>
+  <tr>
+    <td><%= lease.partition.description %></td>
+    <td><%= lease.client.full_name %></td>
+    <td><%= lease.begin_time %></td>
+    <td><%= lease.end_time %></td>
+    <td><%= link_to 'Show', lease %></td>
+    <% if permitted_to? :edit, @user %>
+    <td><%= link_to 'Edit', edit_lease_path(lease) %></td>
+    <% end %>
+    <% if permitted_to? :destroy, @user %>
+    <td><%= link_to 'Destroy', lease, :confirm => 'Are you sure?', :method => :delete %></td>
+   <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New lease', new_lease_path %>

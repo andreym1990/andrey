@@ -1,0 +1,22 @@
+<p class="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p><%= pluralize(@user.roles.size, 'Role') %></p>
+<ul>
+	<% @user.roles.each do |role| %>
+		<li><%= role.name %></li>
+	<% end %>
+</ul>
+<% if permitted_to? :edit, @user %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
+<%= link_to 'Back', users_path %>

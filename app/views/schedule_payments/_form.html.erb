@@ -1,0 +1,44 @@
+<%= form_for(@schedule_payment) do |f| %>
+  <% if @schedule_payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_payment.errors.count, "error") %> prohibited this schedule_payment from being saved:</h2>
+
+      <ul>
+      <% @schedule_payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+
+<p>
+  <label for="schedule_payment_client_id">Client:</label>
+  <%= collection_select(nil, :client_id, Client.find(:all), :id, :name) %>
+</p>
+<div class="field">
+    <%= f.label :lease %><br />
+    <%= grouped_collection_select(:schedule_payment, :lease_id, Client.all, :leases, :full_name, :id, :from_to ) %>
+</div>
+  
+<div class="field">
+    <%= f.label :Date_of_payment %><br />
+    <%= f.date_select :date_of_payment %>
+</div>
+
+
+<div class="field">
+    <%= f.label :Method_of_payment %><br />
+    <%=collection_select(:schedule_payment, :method_of_payment_id, MethodOfPayment.all, :id, :title ) %>
+ </div>
+
+<div class="field">
+    <%= f.label :account %><br />
+    <%= grouped_collection_select(:schedule_payment, :account_id, Client.all, :accounts, :full_name, :id, :details ) %>
+</div>
+  
+<div class="actions">
+    <%= f.submit %>
+  </div> 
+<% end %>

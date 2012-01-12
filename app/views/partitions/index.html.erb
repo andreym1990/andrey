@@ -1,0 +1,27 @@
+<h1>Listing partitions</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @partitions.each do |partition| %>
+  <tr>
+    <td><%= partition.description %></td>
+    <td><%= link_to 'Show', partition %></td>
+    <% if permitted_to? :edit, @user %>
+    <td><%= link_to 'Edit', edit_partition_path(partition) %></td>
+    <% end %>
+    <% if permitted_to? :destroy, @user %>
+    <td><%= link_to 'Destroy', partition, :confirm => 'Are you sure?', :method => :delete %></td>
+  <% end %> 
+ </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Partition', new_partition_path %>

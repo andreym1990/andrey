@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Details:</b>
+  <%= @methodOfPayment.title %>
+</p>
+<% if permitted_to? :edit, @user %>
+<%= link_to 'Edit', edit_method_of_payment_path(@methodOfPayment) %> |
+<% end %>
+<%= link_to 'Back', method_of_payments_path %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Begin:</b>
+  <%= @lease.begin_time %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @lease.end_time %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%= @lease.client.full_name %>
+</p>
+
+<p>
+  <b>Partition:</b>
+  <%= @lease.partition.description %>
+</p>
+<% if permitted_to? :edit, @user %>
+<%= link_to 'Edit', edit_lease_path(@lease) %> |
+<% end %>
+<%= link_to 'Back', leases_path %>

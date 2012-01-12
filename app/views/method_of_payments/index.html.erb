@@ -1,0 +1,27 @@
+<h1>Listeng methods of payment</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @methodOfpayments.each do |methodofpayment| %>
+  <tr>
+    <td><%= methodofpayment.title %></td>
+    <td><%= link_to 'Show', methodofpayment %></td>
+    <% if permitted_to? :edit, @user %>
+    <td><%= link_to 'Edit', edit_method_of_payment_path(methodofpayment) %></td>
+    <% end %>
+    <% if permitted_to? :destroy, @user %>
+    <td><%= link_to 'Destroy', methodofpayment, :confirm => 'Are you sure?', :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Method of payment', new_method_of_payment_path %>

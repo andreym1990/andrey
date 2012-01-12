@@ -1,0 +1,34 @@
+<%= javascript_include_tag :defaults%>
+<h1>Listing schedule_payments</h1>
+
+<table>
+  <tr>
+    <th>    Date of payment    </th>
+    <th>    Client    </th>
+    <th>    Begin of lease    </th>
+    <th>    End of lease    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @schedule_payments.each do |schedule_payment| %>
+  <tr>
+    <td>    <%= schedule_payment.date_of_payment %>    </td>
+      <td>    <%= schedule_payment.lease.client.full_name %>    </td>
+    <td>    <%= schedule_payment.lease.begin_time %>    </td>
+    <td>    <%= schedule_payment.lease.end_time %>    </td>
+    <td><%= link_to 'Show', schedule_payment %></td>
+    <% if permitted_to? :edit, @user %>
+    <td><%= link_to 'Edit', edit_schedule_payment_path(schedule_payment) %></td>
+    <% end %>
+     <% if permitted_to? :destroy, @user %>
+    <td><%= link_to 'Destroy', schedule_payment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New schedule_payment', new_schedule_payment_path %>

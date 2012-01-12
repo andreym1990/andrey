@@ -1,0 +1,33 @@
+<%= form_for(@lease) do |f| %>
+  <% if @lease.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lease.errors.count, "error") %> prohibited this lease from being saved:</h2>
+
+      <ul>
+      <% @lease.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :client %><br />
+    <%= collection_select(:lease, :client_id, Client.all, :id, :name ) %>
+  </div>
+   <div class="field">
+    <%= f.label :partition %><br />
+    <%= collection_select(:lease, :partition_id, Partition.all, :id, :description ) %>
+  </div>
+<div class="field">
+    <%= f.label :Begin %><br />
+    <%= f.date_select :begin_time %>
+  </div>
+<div class="field">
+    <%= f.label :End %><br />
+    <%= f.date_select :end_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

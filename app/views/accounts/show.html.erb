@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Details:</b>
+  <%= @account.details %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%= @account.client.lname %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
